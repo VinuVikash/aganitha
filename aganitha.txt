@@ -1,0 +1,45 @@
+Mini Project
+1)Intsall Docker
+
+2)Install WSL 2 and run the following command in power shell as admin
+Enable-WindowsOptionalFeature -Online -FeatureName $("VirtualMachinePlatform","Microsoft-Windows-Subsystem-Linux")
+
+3)Create a Postgress database in Docker
+docker run --name Vinu -e POSTGRES_PASSWORD=Vinu@2222 -p 5432:5432 -d postgres
+
+4)Open CLI and type the following command
+psql -U postgres -h localhost
+
+5)Create a database
+create database vinudb;
+
+6)Create User with password
+create user Vinu with password 'Vinu@2222';
+
+7)Connect with database
+\c vinudb;
+
+8)Create Table
+create schema trip;
+create table trip.test(ID int)
+
+9)Import csv to psql
+COPY trip.test(ID int) FROM '/home/Documents/trip.csv' DELIMITER ',' CSV HEADER;
+select * from trip.test;
+
+10)Or we can create our own table and populate
+CREATE TABLE COMPANY(
+   ID INT PRIMARY KEY     NOT NULL,
+   NAME           TEXT    NOT NULL,
+   AGE            INT     NOT NULL,
+   ADDRESS        CHAR(50),
+   SALARY         REAL,
+   JOIN_DATE      DATE
+);
+
+INSERT INTO COMPANY (ID,NAME,AGE,ADDRESS,SALARY,JOIN_DATE) VALUES (1, 'Paul', 32, 'California', 20000.00,'2001-07-13');
+
+SELECT * FROM COMPANY;
+
+11)To run jupyter notebook in Docker
+docker run -p 8888:8888 jupyter/scipy-notebook:33add21fab64
